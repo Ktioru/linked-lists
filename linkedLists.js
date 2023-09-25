@@ -61,6 +61,60 @@ function linkedList() {
             }
         }
     }
+    this.pop = () => {
+        let array = this.list[0]
+        while(true) {
+            if (typeof(array[1]) == "object") {
+                if(array[1][1] == null) {
+                    array[1] = null
+                    return null
+                }
+                array = array[1]
+                
+            }
+        }
+    }
+    this.contains = (value) => {
+        let array = this.list[0]
+        while(true) {
+            if(array[0] == value) {
+                return true
+            } else if(array[1] == null) {
+                return false
+                
+            } else if (typeof(array[1]) == "object") {
+                array = array[1]
+            }
+        }     
+    }
+    this.find = (value) => {
+        let array = this.list[0]
+        let index = 1
+        while(true) {
+            if(array[0] == value) {
+                return index
+            } else if(array[1] == null) {
+                return null
+                
+            } else if (typeof(array[1]) == "object") {
+                index++
+                array = array[1]
+            }
+        }  
+    }
+    this.toString = () => {
+        let message = ""
+        let array = this.list[0]
+        while(true) {
+            message += `( ${array[0]} ) -> `
+            if(array[1] == null) {
+                message += "null"
+                return message                
+            } else if (typeof(array[1]) == "object") {
+                array = array[1]
+            }
+        }
+    }
 
 }
 
@@ -72,12 +126,8 @@ const list = new linkedList()
 list.append(12)
 list.append(13)
 list.append(14)
-list.append(15)
+list.append(16)
 
 
 
-console.log(list)
-console.log(list.size())
-console.log(list.head())
-console.log(list.tail())
-console.log(list.at(4))
+console.log(list.toString())
